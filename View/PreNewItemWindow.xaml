@@ -1,0 +1,39 @@
+﻿<Window x:Class="Task18.View.PreNewItemWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Task18.View"
+        xmlns:viewmodels="clr-namespace:Task18.ViewModels"
+        d:DataContext="{d:DesignInstance Type=viewmodels:PreNewItemViewModel}"
+        mc:Ignorable="d"
+        Title="PreNewItemWindow" Height="250" Width="350"
+        x:Name="window">
+    <Grid>
+        <Border Style="{StaticResource BorderStyle}">
+            <StackPanel>
+                <TextBlock Style="{StaticResource TextBlockStyle}">Choose creating animal type:</TextBlock>
+                <ComboBox   ItemsSource="{Binding ComboDic}"
+                        DisplayMemberPath="Key"
+                        SelectedValuePath="Value"
+                        SelectedValue="{Binding SelectedType, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+            />
+                <TextBlock Visibility="{Binding IsNewAnimalTypeVisible,
+                            Converter={StaticResource BoolToVisibilityConverter},
+                            UpdateSourceTrigger=PropertyChanged}"
+                           Style="{StaticResource TextBlockStyle}">
+                Input your animal type:
+                </TextBlock>
+                <TextBox Visibility="{Binding IsNewAnimalTypeVisible,
+                Converter={StaticResource BoolToVisibilityConverter},
+                UpdateSourceTrigger=PropertyChanged}"
+                Style="{StaticResource TextBoxStyle}"
+                Text="{Binding NewAnimalType, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"/>
+                <StackPanel Orientation="Horizontal" FlowDirection="RightToLeft">
+                    <Button Height="25" Width="100" Command="{Binding ContinueCommand}" CommandParameter="{Binding ElementName=window}">Continue</Button>
+                    <Button Height="25" Width="100" Command="{Binding CancelCommand}" CommandParameter="{Binding ElementName=window}">Cancel</Button>
+                </StackPanel>
+            </StackPanel>
+        </Border>
+    </Grid>
+</Window>

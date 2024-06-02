@@ -1,0 +1,34 @@
+﻿<Window x:Class="Task18.View.ItemWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Task18.View"
+        xmlns:viewmodels="clr-namespace:Task18.ViewModels"
+        d:DataContext="{d:DesignInstance Type=viewmodels:ItemViewModel}"
+        mc:Ignorable="d"
+        Title="Animal" Height="300" Width="370"
+        x:Name="window">
+    <Grid>
+        <Border Style="{StaticResource BorderStyle}">
+            <StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Style="{StaticResource TextBlockStyle}" Text="Animal type:" Width="100"/>
+                    <TextBox Style="{StaticResource TextBoxStyle}" Text="{Binding EditableItem.AnimalType, UpdateSourceTrigger=PropertyChanged}" Width="200"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Style="{StaticResource TextBlockStyle}" Text="Animal name:" Width="100"/>
+                    <TextBox Style="{StaticResource TextBoxStyle}" Text="{Binding EditableItem.AnimalName, UpdateSourceTrigger=PropertyChanged}" Width="200"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Style="{StaticResource TextBlockStyle}" Text="Animal overview:" Width="100"/>
+                    <TextBox Style="{StaticResource TextBoxStyle}" Text="{Binding EditableItem.Overview, UpdateSourceTrigger=PropertyChanged}" Width="200" Height="100"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" FlowDirection="RightToLeft">
+                    <Button Command="{Binding SaveCommand}" CommandParameter="{Binding ElementName=window}" Height="25" Width="100">Save</Button>
+                    <Button Command="{Binding CancelCommand}" CommandParameter="{Binding ElementName=window}" Height="25" Width="100">Cancel</Button>
+                </StackPanel>
+            </StackPanel>
+        </Border>
+    </Grid>
+</Window>

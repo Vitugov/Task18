@@ -1,0 +1,34 @@
+﻿<Window x:Class="Task18.View.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Task18.ViewModels"
+        mc:Ignorable="d"
+        d:DataContext="{d:DesignInstance Type=local:MainViewModel, IsDesignTimeCreatable=True}"
+        Title="MainWindow" Height="450" Width="500">
+    <Grid>
+        <Border Style="{StaticResource BorderStyle}">
+            <StackPanel>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Style="{StaticResource HeaderStyle}">Animals</TextBlock>
+                    <Button Command="{Binding AddNewItemCommand}" Grid.Column="2">Add</Button>
+                    <Button Command="{Binding ChangeItemCommand}" Grid.Column="3">Change</Button>
+                    <Button Command="{Binding DeleteItemCommand}" Grid.Column="4">Delete</Button>
+                </Grid>
+                <DataGrid ItemsSource="{Binding ItemCollectionView, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                      SelectedItem="{Binding SelectedItem, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                      AutoGenerateColumns="True"
+                      IsReadOnly="True">
+                </DataGrid>
+            </StackPanel>
+        </Border>
+    </Grid>
+</Window>
